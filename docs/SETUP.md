@@ -168,7 +168,7 @@ brew install git
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/yourusername/iris-image-synthesis.git
+git clone https://github.com/KaiTooast/iris-image-synthesis.git
 cd iris-image-synthesis
 
 # 2. Create virtual environment
@@ -191,7 +191,7 @@ pip install -r requirements.txt
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/yourusername/iris-image-synthesis.git
+git clone https://github.com/KaiTooast/iris-image-synthesis.git
 cd iris-image-synthesis
 
 # 2. Create virtual environment
