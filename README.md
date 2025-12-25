@@ -427,7 +427,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 **Need help?** We're here for you!
 
-[![GitHub Issues](https://img.shields.io/badge/Issues-Report%20Bug-red?style=for-the-badge&logo=github)](https://github.com/KaiTooast/Iris-Image-Synthesis/issues)
+[![GitHub Issues](https://img.shields.io/badge/Issues-Report%20Bug-red?style=for-the-badge&logo=github)](https://github.com/KaiTooast/iris-image-synthesis/issues)
 [![GitHub Discussions](https://img.shields.io/badge/Discussions-Ask%20Questions-blue?style=for-the-badge&logo=github)](https://github.com/KaiTooast/iris-image-synthesis/discussions)
 [![Documentation](https://img.shields.io/badge/Docs-Read%20More-green?style=for-the-badge&logo=readthedocs)](docs/SETUP.md)
 
