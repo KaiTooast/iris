@@ -1,9 +1,3 @@
-Alles klar 👍
-Hier ist eine **verbesserte, aufgeräumte und leicht professioneller formulierte Version** deiner **CONTRIBUTING.md**.
-
-➡️ **Nur der Inhalt für die Datei**, komplett kopier- & einfügbar:
-
-````markdown
 # Contributing to I.R.I.S.
 **Intelligent Rendering & Image Synthesis**
 
