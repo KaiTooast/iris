@@ -1,283 +1,213 @@
-# I.R.I.S. (Intelligent Rendering & Image Synthesis)
-
-**High-performance AI image generation powered by Stable Diffusion with Discord integration and web interface.**
-
-![IRIS Banner](examples/Example%20(6).png)
+Alles klar 👍
+Hier ist **der komplette README-Inhalt**, **exakt so**, dass du ihn **1:1 in deine `README.md` kopieren kannst**.
+Ich packe **nur den Dateiinhalte** in eine **Code-Formatierung**, ohne zusätzliche Erklärungen dazwischen.
 
 ---
 
-## Overview
+```markdown
+# 🎨 I.R.I.S.
+### Intelligent Rendering & Image Synthesis
 
-I.R.I.S. is a powerful, GPU-accelerated AI image generation system that combines Stable Diffusion with an intuitive web interface and Discord bot integration. Generate stunning images from text prompts, create variations, and upscale images—all with seamless Discord sharing capabilities.
+**A modular, local-first AI image generation system — built to be forked, extended and customized.**
 
-### Key Features
+I.R.I.S. is an **open-source Stable Diffusion platform** designed as a **foundation**, not a locked product.  
+Think of it as **Linux for AI image generation**:  
+you get a working system, but you decide how far it goes.
 
-- **High-Quality Image Generation** - Stable Diffusion-powered text-to-image synthesis
-- **Web Interface** - Modern, user-friendly web UI for easy image generation
-- **Discord Integration** - Automatic posting to configurable Discord channels
-- **Image Variations** - Create multiple variations from existing images
-- **Upscaling** - Enhance image resolution with AI upscaling
-- **Prompt History** - Track and reuse successful prompts
-- **Flexible Configuration** - Customizable settings for every use case
-- **GPU Optimized** - Efficient VRAM management for various GPU capabilities
+> ⚠️ This project runs **entirely on your own hardware**.  
+> No cloud, no accounts, no telemetry.
 
 ---
 
-## Documentation
+## ✨ Key Philosophy
 
-**Comprehensive documentation is available at:** [https://kaitooast.github.io/iris-image-synthesis/](https://kaitooast.github.io/iris-image-synthesis/)
+- 🧠 **Local-first** — everything runs on your machine
+- 🔓 **Open Source** — MIT licensed, no restrictions
+- 🧩 **Modular** — replace UI, backend, models, pipelines
+- 🧪 **Experimental-friendly** — built for tinkering
+- 🚀 **Production-capable** — WebSockets, progress streaming, APIs
 
-### Quick Links
-
-- [Getting Started](https://kaitooast.github.io/iris-image-synthesis/setup.html) - Installation and setup guide
-- [Usage Guide](https://kaitooast.github.io/iris-image-synthesis/usage.html) - How to use I.R.I.S.
-- [Prompt Engineering](https://kaitooast.github.io/iris-image-synthesis/prompts.html) - Tips for better prompts
-- [FAQ](https://kaitooast.github.io/iris-image-synthesis/faq.html) - Common questions answered
-- [Troubleshooting](https://kaitooast.github.io/iris-image-synthesis/troubleshooting.html) - Solve common issues
-- [API Reference](https://kaitooast.github.io/iris-image-synthesis/api.html) - API documentation
-- [Search Documentation](https://kaitooast.github.io/iris-image-synthesis/search.html) - Search all docs
-
-The documentation includes a powerful search feature that lets you quickly find answers to any questions. Press `/` to activate search from any docs page.
+This repository provides a **fully functional reference implementation**, not a closed product.
 
 ---
 
-## Quick Start
+## 🖼️ Features Overview
 
-### Prerequisites
+### Core Features
+- Modern **Web UI** (Generate, Gallery, Settings)
+- **Multiple AI models** (anime, realistic, pixel art, SDXL)
+- **Text-to-Image** & **Image-to-Image**
+- **Real-time progress** via WebSockets
+- **Prompt & image history logging**
+- **NSFW prompt filtering**
+- **CPU & low-VRAM GPU support**
 
-- **Python** 3.9 or higher
-- **GPU** with CUDA support (NVIDIA recommended)
-- **VRAM** 6GB minimum, 8GB+ recommended
-- **CUDA** 11.8 or higher
-- **Discord Bot Token** (optional, for Discord features)
+### Advanced Features
+- **DRAM Extension** (use system RAM for low VRAM GPUs)
+- **Custom resolutions** (256×256 → 4096×4096)
+- **CFG scale fine control**
+- **Real-ESRGAN upscaling** (2× / 4× / 8×)
+- **Discord bot integration**
+- **Gallery live updates**
+- **Automatic VRAM safety adjustments**
+
+---
+
+## 🚀 Quick Start
+
+### Requirements
+
+```
+
+Python 3.9 – 3.11
+GPU recommended (4 GB VRAM minimum)
+CUDA 11.8+ (optional, CPU mode supported)
+
+````
 
 ### Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/kaitooast/iris-image-synthesis.git
-   cd iris-image-synthesis
-   ```
+```bash
+git clone https://github.com/KaiTooast/iris-image-synthesis.git
+cd iris-image-synthesis
 
-2. **Create virtual environment:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # Windows: venv\Scripts\activate
-   ```
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# Linux / macOS
+source venv/bin/activate
 
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+pip install -r requirements.txt
+````
 
-4. **Configure environment variables:**
-   Create a `.env` file in the root directory:
-   ```env
-   # Discord Bot Configuration (Optional)
-   DISCORD_BOT_TOKEN=your_bot_token_here
-   DISCORD_BOT_OWNER_ID=your_discord_user_id
-   DISCORD_BOT_ID=bot_user_id
-   
-   # Discord Channel IDs (Optional)
-   DISCORD_CHANNEL_NEW_IMAGES=channel_id
-   DISCORD_CHANNEL_VARIATIONS=channel_id
-   DISCORD_CHANNEL_UPSCALED=channel_id
-   
-   # Server Configuration
-   SERVER_PORT=8000
-   SERVER_HOST=0.0.0.0
-   ```
+### Run
 
-5. **Start I.R.I.S.:**
-   ```bash
-   # Start web interface only
-   python src/start.py web
-   
-   # Start Discord bot only
-   python src/start.py bot
-   
-   # Start both
-   python src/start.py all
-   ```
+```bash
+# Web UI only
+python src/start.py web
 
-6. **Access the web interface:**
-   Open your browser to `http://localhost:8000`
+# Discord bot only
+python src/start.py bot
 
-For detailed setup instructions, visit the [Setup Guide](https://kaitooast.github.io/iris-image-synthesis/setup.html).
-
----
-
-## Usage Examples
-
-### Generate an Image
-
-```python
-# Via Web Interface
-1. Enter your prompt: "A serene mountain landscape at sunset, photorealistic"
-2. Adjust settings (resolution, steps, guidance scale)
-3. Click "Generate"
-4. Image appears in gallery and optionally posts to Discord
+# Everything
+python src/start.py all
 ```
 
-### Create Variations
-
-```python
-# From existing image
-1. Select an image from the gallery
-2. Click "Create Variation"
-3. Adjust variation strength
-4. Generate new variations based on the original
-```
-
-### Upscale Images
-
-```python
-# Enhance resolution
-1. Select an image to upscale
-2. Choose upscale factor (2x, 4x)
-3. Click "Upscale"
-4. High-resolution image is generated
-```
-
-More examples and detailed usage instructions are available in the [Usage Guide](https://kaitooast.github.io/iris-image-synthesis/usage.html).
+🌐 Open: **[http://localhost:8000](http://localhost:8000)**
 
 ---
 
-## Project Structure
+## 🧩 Project Structure
 
 ```
-IRIS/
-├── src/
-│   ├── api/                    # FastAPI backend
-│   ├── services/               # Discord bot service
-│   ├── core/                   # Core generation logic
-│   ├── utils/                  # Utilities and helpers
-│   └── start.py                # Entry point
-├── static/
-│   ├── data/                   # JSON data storage
-│   ├── config/                 # Configuration files
-│   └── assets/                 # Web assets
-├── outputs/                    # Generated images
-├── docs/                       # Documentation website
-├── examples/                   # Example outputs
-├── Logs/                       # Application logs
-├── requirements.txt            # Python dependencies
-├── .env                        # Environment variables
-└── README.md                   # This file
+src/
+├── api/            # FastAPI + WebSocket backend
+├── core/           # Model loading & generation logic
+├── services/       # Discord, upscaling, extensions
+├── utils/          # Logging, file handling
+├── frontend/       # HTML UI (Generate, Gallery, Settings)
+└── start.py        # Unified entry point
 ```
 
----
-
-## Configuration
-
-I.R.I.S. offers extensive configuration options for generation parameters, Discord channels, model settings, and performance optimization. See the [Setup Guide](https://kaitooast.github.io/iris-image-synthesis/setup.html) for complete configuration details.
-
-### Key Settings
-
-- **Resolution** - Output image dimensions
-- **Steps** - Generation quality (more steps = better quality)
-- **Guidance Scale** - How closely to follow the prompt
-- **Sampler** - Algorithm for image generation
-- **Seed** - For reproducible results
-- **Discord Channels** - Separate channels for different image types
+Static data, outputs and logs are **explicitly separated** for easy modification.
 
 ---
 
-## GPU Compatibility
+## ⚙️ Configuration (.env)
 
-I.R.I.S. is optimized for various GPU configurations:
+```env
+HOST=0.0.0.0
+PORT=8000
 
-| GPU | VRAM | Recommended Resolution | Notes |
-|-----|------|----------------------|-------|
-| RTX 4090 | 24GB | Up to 1024x1024 | Optimal performance |
-| RTX 3080/4080 | 10-16GB | Up to 768x768 | Excellent performance |
-| RTX 3060/3070 | 8-12GB | Up to 512x512 | Good performance |
-| RTX 2060/3050 | 6-8GB | Up to 512x512 | May need optimization |
+DEFAULT_MODEL=anime_kawai
 
-See the [FAQ](https://kaitooast.github.io/iris-image-synthesis/faq.html) for GPU-specific optimization tips.
+DRAM_EXTENSION_ENABLED=false
+VRAM_THRESHOLD_GB=6
+MAX_DRAM_GB=16
+```
 
----
-
-## Discord Integration
-
-I.R.I.S. features powerful Discord integration that automatically shares generated images to configurable channels:
-
-- **New Images** - Fresh generations posted to dedicated channel
-- **Variations** - Image variations tracked separately
-- **Upscaled** - Enhanced images shared to upscale channel
-- **Interactive Commands** - Discord bot commands for generation
-
-Setup instructions are available in the [Setup Guide](https://kaitooast.github.io/iris-image-synthesis/setup.html#discord-setup).
+Discord integration is **optional** and fully isolated.
 
 ---
 
-## Contributing
+## 🎯 Designed for Modification
 
-Contributions are welcome! Please read the [Contributing Guidelines](CONTRIBUTING.md) before submitting pull requests.
+You are encouraged to:
 
-### How to Contribute
+* Replace the frontend entirely
+* Add your own models or pipelines
+* Build a token / subscription system
+* Deploy in a datacenter
+* Run on NVIDIA, AMD, Intel (experimental)
+* Fork this into a commercial or private project
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
-
----
-
-## Troubleshooting
-
-Having issues? Check the [Troubleshooting Guide](https://kaitooast.github.io/iris-image-synthesis/troubleshooting.html) for solutions to common problems:
-
-- CUDA/GPU errors
-- Memory issues
-- Discord connection problems
-- Model loading failures
-- Image generation errors
-
-You can also search the [documentation](https://kaitooast.github.io/iris-image-synthesis/search.html) for specific error messages.
+This repository **intentionally does not enforce a business model**.
 
 ---
 
-## License
+## 🖥️ Hardware Performance (Reference)
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+| Tier        | GPU      | VRAM  | Notes              |
+| ----------- | -------- | ----- | ------------------ |
+| Minimum     | GTX 1650 | 4 GB  | Tested & supported |
+| Recommended | RTX 3060 | 12 GB | Smooth experience  |
+| High-End    | RTX 4090 | 24 GB | Near real-time     |
 
----
-
-## Acknowledgments
-
-- **Stable Diffusion** - Core image generation model
-- **Hugging Face** - Model hosting and diffusers library
-- **Discord.py** - Discord bot framework
-- **FastAPI** - Web backend framework
-- **PyTorch** - Deep learning framework
+> I.R.I.S. was **tested on a GTX 1650**, proving the system works even on low-end hardware.
 
 ---
 
-## Support
+## 🔌 API & WebSocket Support
 
-Need help? Here are your options:
+* REST API for generation, gallery, system info
+* WebSocket streaming for:
 
-- **Documentation** - [https://kaitooast.github.io/iris-image-synthesis/](https://kaitooast.github.io/iris-image-synthesis/)
-- **Search Docs** - [Search all documentation](https://kaitooast.github.io/iris-image-synthesis/search.html)
-- **Issues** - [GitHub Issues](https://github.com/kaitooast/iris-image-synthesis/issues)
-- **Discussions** - [GitHub Discussions](https://github.com/kaitooast/iris-image-synthesis/discussions)
+  * Generation progress
+  * Gallery updates
+  * Multi-page synchronization
 
----
-
-## Gallery
-
-![Example 1](examples/Example%20(1).png)
-![Example 2](examples/Example%20(2).png)
-![Example 3](examples/Example%20(3).png)
-
-More examples available in the [examples](examples/) directory and the [documentation](https://kaitooast.github.io/iris-image-synthesis/).
+Perfect for **custom frontends** or external clients.
 
 ---
 
-**Made with ❤️ by the I.R.I.S. community**
+## 🛡️ Safety & Filters
 
-[Documentation](https://kaitooast.github.io/iris-image-synthesis/) | [Issues](https://github.com/kaitooast/iris-image-synthesis/issues) | [Contributing](CONTRIBUTING.md)
+* Prompt-based NSFW filtering
+* Explicit content blocking
+* Easily extendable keyword system
+* Can be disabled per request
+
+---
+
+## 📜 License
+
+**MIT License**
+Use it, fork it, sell it, modify it — just keep the license.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome — from small fixes to major rewrites.
+
+See **CONTRIBUTING.md** for:
+
+* Code style
+* Architecture notes
+* Model integration rules
+
+---
+
+## 💬 Final Note
+
+I.R.I.S. is not meant to compete with cloud AI platforms.
+It exists to **give people control back** over AI image generation.
+
+If you want:
+
+* freedom instead of subscriptions
+* experimentation instead of lock-in
+* ownership instead of APIs
+
+Then this project is for you.
+
