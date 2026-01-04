@@ -1,68 +1,43 @@
 # Code of Conduct
-**I.R.I.S. – Intelligent Rendering & Image Synthesis**
 
 ## Our Pledge
 
-We pledge to make participation in I.R.I.S. a harassment-free experience for everyone, regardless of:
-- Age
-- Gender identity
-- Sexual orientation
-- Disability
-- Appearance
-- Ethnicity
-- Religion
-- Skill level
-- Hardware or operating system
-
-This project exists to empower creators and developers — not to exclude them.
+We are committed to providing a welcoming, inclusive, and respectful environment for everyone.
 
 ---
 
 ## Expected Behavior
 
-Participants are expected to:
 - Be respectful and constructive
-- Accept constructive criticism
-- Help others learn and grow
-- Focus on what is best for the community
+- Accept feedback gracefully
+- Encourage learning and experimentation
 - Assume good intentions
 
 ---
 
 ## Unacceptable Behavior
 
-Unacceptable behavior includes:
-- Harassment, hate speech, or threats
-- Discrimination or personal attacks
-- Sexual or violent content outside project scope
-- Trolling, spamming, or deliberate disruption
-- Encouraging illegal or harmful behavior
+- Harassment or discrimination
+- Hate speech or personal attacks
+- Deliberate disruption of the project
+- Sharing illegal or harmful content
 
 ---
 
 ## Enforcement
 
-Project maintainers have the right to:
-- Remove comments, issues, or PRs
-- Temporarily or permanently ban contributors
-- Take action to protect the community
-
-Decisions are made in good faith and in the interest of the project.
+Project maintainers reserve the right to remove content or contributors that violate this code.
 
 ---
 
-## Reporting Issues
+## Scope
 
-If you experience or witness unacceptable behavior:
-- Open a **private GitHub issue**
-- Or contact the project owner directly
-
-Reports will be handled discreetly and respectfully.
+This applies to all project spaces:
+- GitHub issues & pull requests
+- Discussions
+- Documentation
+- Community forks referencing I.R.I.S.
 
 ---
 
-## Attribution
-
-This Code of Conduct is inspired by the Contributor Covenant, adapted for an open AI project.
-
-By participating, you agree to follow this Code of Conduct.
+Let’s build responsibly.

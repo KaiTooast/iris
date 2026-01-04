@@ -107,7 +107,7 @@ def start_web_server():
         "src.api.server:app",
         "--host", "0.0.0.0",
         "--port", "8000",
-        # ❗ KEIN --reload
+        # ❗ No --reload
     ])
 
     current_processes.append(process)

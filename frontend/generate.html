@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I.R.I.S. Generator (Leonardo Style)</title>
+    <title>I.R.I.S. Generator</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/assets/fav.ico">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -591,10 +591,21 @@
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                             Upscale
                         </button>
-                        <div id="upscaleOptions" class="hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-leo-panel border border-leo-border p-1.5 rounded-xl shadow-xl flex gap-1 min-w-[180px]">
-                            <button class="upscale-btn active flex-1 py-1.5 rounded-lg text-xs font-medium bg-purple-500/20 text-purple-400" onclick="selectUpscaleScale(2, this)">2x</button>
-                            <button class="upscale-btn flex-1 py-1.5 rounded-lg text-xs font-medium text-gray-400 hover:bg-white/5" onclick="selectUpscaleScale(4, this)">4x</button>
-                            <button class="bg-purple-600 hover:bg-purple-500 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition" onclick="upscaleImage()">Go</button>
+                        <!-- Added method selection dropdown -->
+                        <div id="upscaleOptions" class="hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-leo-panel border border-leo-border p-2 rounded-xl shadow-xl min-w-[220px]">
+                            <div class="mb-2 pb-2 border-b border-leo-border">
+                                <label class="block text-xs text-gray-400 mb-1">Method:</label>
+                                <select id="upscaleMethod" class="w-full bg-leo-bg border border-leo-border rounded-lg px-2 py-1.5 text-xs text-gray-300">
+                                    <option value="swinir">SwinIR (Highest Quality)</option>
+                                    <option value="realesrgan" selected>Real-ESRGAN (Fast)</option>
+                                    <option value="lanczos">Lanczos (Fastest)</option>
+                                </select>
+                            </div>
+                            <div class="flex gap-1">
+                                <button class="upscale-btn active flex-1 py-1.5 rounded-lg text-xs font-medium bg-purple-500/20 text-purple-400" onclick="selectUpscaleScale(2, this)">2x</button>
+                                <button class="upscale-btn flex-1 py-1.5 rounded-lg text-xs font-medium text-gray-400 hover:bg-white/5" onclick="selectUpscaleScale(4, this)">4x</button>
+                                <button class="bg-purple-600 hover:bg-purple-500 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition" onclick="upscaleImage()">Go</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -675,8 +686,12 @@
         const port = window.location.port || (window.location.protocol === 'https:' ? '443' : '80');
         const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
         
-        const API_URL = `http://${host}:${port}/api`;
-        const WS_URL = `${protocol}://${host}:${port}/ws/generate`;
+        const API_URL = `${location.origin}/api`;
+
+        const WS_URL =
+            (location.protocol === "https:" ? "wss://" : "ws://") +
+            location.host +
+            "/ws/generate";
         
         const DEFAULT_NEGATIVE_PROMPT = "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, out of focus, duplicate, ugly, morbid, mutilated, mutated hands, poorly drawn face, mutation, deformed, dehydrated, bad proportions, gross proportions, malformed limbs, long neck";
 
@@ -708,7 +723,7 @@
             { id: 'pony_diffusion', name: 'Pony Diffusion v6 XL', image: '/assets/thumbnails/thumbnail-pony-diffusion-v6-xl.webp' },
             { id: 'anything_v5', name: 'Anything v5', image: '/assets/thumbnails/thumbnail-anything-v5.webp' },
             { id: 'animagine_xl', name: 'Animagine XL 3.1', image: '/assets/thumbnails/thumbnail-animagine-xl-3.1.webp' },
-            { id: 'aom3', name: 'AOM3', image: null },
+            { id: 'aom3', name: 'AOM3', image: '/assets/thumbnails/thumbnail-aom3.webp' },
             { id: 'counterfeit_v3', name: 'Counterfeit v3.0', image: '/assets/thumbnails/thumbnail-counterfeit-v3.0.webp' },
         ];
 
@@ -892,7 +907,7 @@
                         </div>
                     </div>
                     <div class="text-purple-500 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                     </div>
                 `;
                 
@@ -1091,7 +1106,7 @@
 
         function randomSeed() {
             if (!seedLocked) {
-            const seed = Math.floor(100000 + Math.random() * 900000);
+                const seed = Math.floor(Math.random() * 2147483647);
                 document.getElementById('seedInput').value = seed;
             }
         }
@@ -1352,11 +1367,15 @@
             lastPrompt = prompt;
             
             let seed = null;
-            if (seedLocked) {
-                const seedInput = document.getElementById('seedInput').value;
-                seed = seedInput ? parseInt(seedInput) : Math.floor(Math.random() * 100000);
+            let seedInputVal = document.getElementById('seedInput').value;
+            
+            if (seedInputVal === '-1' || seedInputVal === '') {
+                // Generate random seed
+                seed = null;
+            } else if (seedLocked && seedInputVal) {
+                seed = parseInt(seedInputVal);
             } else {
-                seed = document.getElementById('seedInput').value ? parseInt(document.getElementById('seedInput').value) : null;
+                seed = seedInputVal ? parseInt(seedInputVal) : null;
             }
             
             const settings = {
@@ -1419,7 +1438,7 @@
             
             const btn = document.getElementById('generateBtn');
             btn.disabled = false;
-            btn.innerHTML = '<span>GENERATE</span> <span class="bg-black/20 text-xs px-2 py-0.5 rounded text-white/80 font-mono ml-2">1 TKN</span>';
+            btn.innerHTML = '<span>GENERATE</span>';
             
             document.getElementById('gpuStatusDot').classList.remove('bg-purple-500', 'animate-pulse');
             document.getElementById('gpuStatusDot').classList.add('bg-green-500');
@@ -1501,12 +1520,15 @@
             btn.innerHTML = '<span class="animate-spin">↻</span> Upscaling...';
             
             try {
+                const method = document.getElementById('upscaleMethod').value;
+                
                 const response = await fetch(API_URL + '/upscale', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         filename: currentImageData.filename,
-                        scale: selectedUpscaleScale
+                        scale: selectedUpscaleScale,
+                        method: method
                     })
                 });
                 
@@ -1514,7 +1536,7 @@
                 if (data.success) {
                     document.getElementById('previewImage').src = data.image;
                     currentImageData.filename = data.filename;
-                    alert('Upscale successful!');
+                    alert(`Upscale successful using ${data.method}!`);
                 } else {
                     alert('Upscale failed: ' + data.error);
                 }

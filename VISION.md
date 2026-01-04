@@ -1,86 +1,52 @@
 # Vision – I.R.I.S.
-**Intelligent Rendering & Image Synthesis**
 
-## What is I.R.I.S.?
+I.R.I.S. exists to prove one thing:
 
-I.R.I.S. is not just an AI image generator.
-
-It is a **foundation** — a flexible, open, hardware-agnostic platform for AI image generation that anyone can build upon.
-
-Just like Linux is not a single operating system but a base for countless distributions,  
-**I.R.I.S. is meant to be the Linux of AI image generation.**
+> **AI image generation does not belong exclusively to corporations.**
 
 ---
 
-## Core Philosophy
+## 🌍 The Problem
 
-### 🔓 Open by Design
-- Fully open-source
-- No vendor lock-in
-- No forced cloud dependency
-- Self-hosted by default
-
----
-
-### 🧩 Modular Architecture
-- Models are interchangeable
-- UI is replaceable
-- Backends can evolve independently
-- Web, API, Discord, CLI — all optional layers
+Most AI platforms:
+- Lock users into subscriptions
+- Hide implementation details
+- Require cloud dependency
+- Limit customization
 
 ---
 
-### 🖥️ Hardware Freedom
-I.R.I.S. should run on:
-- NVIDIA (CUDA)
-- AMD (ROCm / HIP)
-- Intel (Arc / XPU)
-- Apple Silicon (Metal)
-- CPU-only systems (with limitations)
+## 🌱 Our Vision
 
-No hardware vendor should define who can create.
+I.R.I.S. is a **reference architecture**, not a walled product.
 
----
-
-### 🌐 From Local to Global
-I.R.I.S. works:
-- On a single gaming PC
-- On a home server
-- In a private studio
-- In a full AI data center
-
-Same software. Different scale.
+- Anyone can run it
+- Anyone can modify it
+- Anyone can scale it
+- Anyone can learn from it
 
 ---
 
-### 🧠 Creator-First
-- Artists keep control
-- Developers can fork freely
-- Studios can build products on top
-- Communities can create their own distributions
+## 🧠 Philosophy
+
+- Local-first
+- Open by default
+- Hardware-agnostic
+- Community-driven
 
 ---
 
-## What I.R.I.S. Is NOT
+## 🚀 The Long-Term Goal
 
-- ❌ A closed SaaS product
-- ❌ A crypto platform
-- ❌ A data-harvesting service
-- ❌ A single-model solution
+To become the **foundation layer** upon which:
+- Individuals
+- Studios
+- Researchers
+- Communities
 
----
-
-## Long-Term Goal
-
-Create an ecosystem where:
-- Anyone can generate images locally
-- Anyone can build AI services ethically
-- Anyone can contribute, regardless of budget
-
-**AI creativity should not be reserved for corporations.**
+build their own AI image ecosystems.
 
 ---
 
-> I.R.I.S. is not owned by hardware.
-> It is not owned by the cloud.
-> It belongs to the community.
+I.R.I.S. is not finished.
+It is **alive**.

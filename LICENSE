@@ -1,89 +1,80 @@
 ================================================================================
-                    CREATIVE COMMONS LICENSE
-           Attribution 4.0 International (CC BY 4.0)
+                             PROJECT LICENSE
+                         I.R.I.S. Image Synthesis
 ================================================================================
 
-Copyright © KaiTooast November 18, 2025
+Copyright © 2025 KaiTooast
 
-This work is licensed under the Creative Commons Attribution 4.0 
-International License.
+This project uses a dual-scope license model.
+Different parts of the project are licensed under different terms,
+as described below.
 
---------------------------------------------------------------------------------
-SUMMARY OF RIGHTS
---------------------------------------------------------------------------------
+================================================================================
+1. SOURCE CODE LICENSE
+================================================================================
+
+All source code in this repository (including but not limited to Python,
+JavaScript, HTML, CSS, backend services, APIs, and build scripts)
+is licensed under the:
+
+Apache License, Version 2.0
+
+You may:
+- Use the code commercially
+- Modify the code
+- Distribute the code
+- Use it privately or publicly
+
+Under the following conditions:
+- You must include a copy of the Apache 2.0 license
+- You must state significant changes
+- You may not use trademarks without permission
+
+Full license text:
+https://www.apache.org/licenses/LICENSE-2.0
+
+================================================================================
+2. ASSETS, IMAGES & DOCUMENTATION LICENSE
+================================================================================
+
+All non-code content in this repository, including but not limited to:
+- AI-generated images
+- Example outputs
+- Prompts
+- Documentation text
+- Diagrams and design assets
+
+are licensed under the:
+
+Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 You are free to:
-
-  ✓ SHARE — copy and redistribute the material in any medium or format
-  ✓ ADAPT — remix, transform, and build upon the material
-  ✓ COMMERCIAL USE — use the material for commercial purposes
-
-The licensor cannot revoke these freedoms as long as you follow the 
-license terms.
-
---------------------------------------------------------------------------------
-TERMS AND CONDITIONS
---------------------------------------------------------------------------------
+- Share
+- Adapt
+- Use commercially
 
 Under the following terms:
+- Attribution is required
+- Changes must be indicated
+- No endorsement is implied
 
-  → ATTRIBUTION — You must give appropriate credit, provide a link to the 
-    license, and indicate if changes were made. You may do so in any 
-    reasonable manner, but not in any way that suggests the licensor 
-    endorses you or your use.
-
-  → NO ADDITIONAL RESTRICTIONS — You may not apply legal terms or 
-    technological measures that legally restrict others from doing 
-    anything the license permits.
-
---------------------------------------------------------------------------------
-ATTRIBUTION REQUIREMENTS
---------------------------------------------------------------------------------
-
-When using this work, please provide attribution in the following format:
-
-  "examples\generated_20251109_145946_seed92258.png" by KaiTooast
-  Licensed under CC BY 4.0
-  Generated using Stable Diffusion (Local Installation)
-
-Example:
-  "Fox Spirit Shrine Maiden" by KaiTooast
-  Licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
-  AI-generated artwork created with Stable Diffusion
-
---------------------------------------------------------------------------------
-NOTICES
---------------------------------------------------------------------------------
-
-- This artwork was generated using Stable Diffusion, an open-source 
-  AI image generation model
-- No warranties are given. The license may not give you all of the 
-  permissions necessary for your intended use
-- For adaptations, you must indicate modifications and may not imply 
-  endorsement by the original creator
-
---------------------------------------------------------------------------------
-FULL LEGAL CODE
---------------------------------------------------------------------------------
-
-The complete license terms are available at:
-https://creativecommons.org/licenses/by/4.0/legalcode
-
-For human-readable summary visit:
+Attribution example:
+"Artwork title" by KaiTooast  
+Licensed under CC BY 4.0  
 https://creativecommons.org/licenses/by/4.0/
 
---------------------------------------------------------------------------------
-CONTACT & MORE INFORMATION
---------------------------------------------------------------------------------
-
-Creator: KaiTooast
-Email: justuspanberg@gmail.com (optional)
-
-For licensing inquiries or custom licensing options, please contact 
-the creator directly.
+Full license text:
+https://creativecommons.org/licenses/by/4.0/legalcode
 
 ================================================================================
-Generated: November 18, 2025
-License Version: CC BY 4.0
-Model: Stable Diffusion (Self-hosted)
+3. ADDITIONAL NOTES
+================================================================================
+
+- This project provides software and AI-generated content "as is"
+- No warranties are provided
+- Generated images may depend on the model used by the end user
+- The project itself does not restrict which AI models are used
+
+================================================================================
+END OF LICENSE
 ================================================================================

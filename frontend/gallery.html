@@ -1,83 +1,109 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I.R.I.S. Gallery</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="/static/assets/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/assets/fav.ico">
+    
+    <!-- Updated fonts to match generate.html -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        leo: {
+                            bg: '#0b0f19',
+                            panel: '#161b22',
+                            input: '#21262d',
+                            border: '#30363d',
+                            accent: '#8b5cf6',
+                            accentHover: '#7c3aed',
+                            text: '#c9d1d9',
+                            textMuted: '#8b949e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-        
         * { 
-            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             box-sizing: border-box;
         }
 
+        /* Updated CSS variables and theme to match generate.html */
         :root {
-            --primary: #06b6d4;
-            --primary-glow: rgba(6, 182, 212, 0.4);
-            --bg-dark: #050505;
-            --panel-bg: rgba(20, 20, 23, 0.7);
-            --border-color: rgba(255, 255, 255, 0.08);
+            --bg-dark: #0b0f19;
+            --panel-bg: #161b22;
+            --input-bg: #21262d;
+            --border-color: #30363d;
+            --accent: #8b5cf6;
         }
 
         body {
             background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(6, 182, 212, 0.08), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(20, 184, 166, 0.05), transparent 25%);
-            color: #e5e7eb;
+            color: #c9d1d9;
             min-height: 100vh;
         }
 
         /* Scrollbars */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+        ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #484f58; }
 
         /* Components */
         .glass-panel {
             background: var(--panel-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border-radius: 12px;
         }
 
         .input-field {
-            background: rgba(0, 0, 0, 0.3);
+            background: var(--input-bg);
             border: 1px solid var(--border-color);
             color: #fff;
             transition: all 0.2s ease;
         }
         .input-field:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px var(--accent);
         }
 
         /* Buttons */
         .btn-primary {
-            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            background: linear-gradient(90deg, #d946ef 0%, #8b5cf6 100%);
             color: white;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .btn-primary:hover {
-            box-shadow: 0 0 20px var(--primary-glow);
+            filter: brightness(1.1);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
             transform: translateY(-1px);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #e5e5e5;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: #c9d1d9;
             transition: all 0.2s;
         }
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(6, 182, 212, 0.3);
+            background: var(--border-color);
+            border-color: var(--accent);
         }
 
         /* Filter Tabs */
@@ -86,18 +112,19 @@
             border-radius: 8px;
             font-size: 13px;
             font-weight: 500;
-            color: #9ca3af;
+            color: #8b949e;
             transition: all 0.2s;
             border: 1px solid transparent;
+            background: var(--input-bg);
         }
         .filter-btn:hover {
             color: white;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--border-color);
         }
         .filter-btn.active {
-            background: rgba(6, 182, 212, 0.15);
-            color: var(--primary);
-            border-color: rgba(6, 182, 212, 0.3);
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--accent);
+            border-color: var(--accent);
         }
 
         /* Grid Items */
@@ -113,8 +140,8 @@
         }
         .image-card:hover {
             transform: translateY(-4px) scale(1.02);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.3);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.3);
             z-index: 10;
         }
         
@@ -137,59 +164,66 @@
         
         /* Stats Cards */
         .stat-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.2s;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
         }
-        .stat-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.1); }
+        .stat-card:hover { 
+            transform: translateY(-2px); 
+            border-color: var(--accent);
+        }
     </style>
 </head>
 <body class="p-4 md:p-8">
 
     <div class="max-w-[1600px] mx-auto space-y-6">
         
-        <!-- Header -->
+        <!-- Updated header to match generate.html style -->
         <header class="glass-panel p-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
                 <a href="/generate" class="group flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-teal-500 flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-purple-900/20 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-teal-400">I.R.I.S.</h1>
-                        <p class="text-[10px] text-gray-500 tracking-wider font-medium">MEDIA LIBRARY</p>
+                        <h1 class="text-xl font-bold text-white">I.R.I.S.</h1>
+                        <p class="text-[10px] text-gray-600 tracking-wider font-medium">MEDIA LIBRARY</p>
                     </div>
                 </a>
             </div>
             
             <div class="flex gap-2">
-                <a href="/generate" class="btn-primary px-4 py-2 rounded-lg text-sm font-semibold shadow-lg shadow-cyan-500/20">Generator</a>
+                <a href="/generate" class="btn-secondary px-4 py-2 rounded-lg text-sm font-medium">Generator</a>
                 <a href="/settings" class="btn-secondary px-4 py-2 rounded-lg text-sm font-medium">Settings</a>
             </div>
         </header>
 
         <!-- Stats Row -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="stat-card glass-panel p-4 rounded-xl flex flex-col items-center justify-center">
+            <div class="stat-card glass-panel p-5 rounded-xl flex flex-col items-center justify-center group">
+                <svg class="w-8 h-8 text-gray-500 mb-2 group-hover:text-purple-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 <div class="text-3xl font-bold text-white mb-1" id="totalImages">0</div>
-                <div class="text-xs text-gray-500 uppercase tracking-wide">Total Images</div>
+                <div class="text-xs text-gray-500 uppercase tracking-wide font-semibold">Total Images</div>
             </div>
-            <div class="stat-card glass-panel p-4 rounded-xl flex flex-col items-center justify-center">
-                <div class="text-3xl font-bold text-cyan-400 mb-1" id="generatedCount">0</div>
-                <div class="text-xs text-gray-500 uppercase tracking-wide">Generated</div>
+            <div class="stat-card glass-panel p-5 rounded-xl flex flex-col items-center justify-center group">
+                <svg class="w-8 h-8 text-gray-500 mb-2 group-hover:text-purple-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <div class="text-3xl font-bold text-purple-400 mb-1" id="generatedCount">0</div>
+                <div class="text-xs text-gray-500 uppercase tracking-wide font-semibold">Generated</div>
             </div>
-            <div class="stat-card glass-panel p-4 rounded-xl flex flex-col items-center justify-center">
-                <div class="text-3xl font-bold text-teal-400 mb-1" id="upscaledCount">0</div>
-                <div class="text-xs text-gray-500 uppercase tracking-wide">Upscaled</div>
+            <div class="stat-card glass-panel p-5 rounded-xl flex flex-col items-center justify-center group">
+                <svg class="w-8 h-8 text-gray-500 mb-2 group-hover:text-indigo-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                <div class="text-3xl font-bold text-indigo-400 mb-1" id="upscaledCount">0</div>
+                <div class="text-xs text-gray-500 uppercase tracking-wide font-semibold">Upscaled</div>
             </div>
-            <div class="stat-card glass-panel p-4 rounded-xl flex flex-col items-center justify-center">
-                <div class="text-3xl font-bold text-purple-400 mb-1" id="variationCount">0</div>
-                <div class="text-xs text-gray-500 uppercase tracking-wide">Variations</div>
+            <div class="stat-card glass-panel p-5 rounded-xl flex flex-col items-center justify-center group">
+                <svg class="w-8 h-8 text-gray-500 mb-2 group-hover:text-pink-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                <div class="text-3xl font-bold text-pink-400 mb-1" id="variationCount">0</div>
+                <div class="text-xs text-gray-500 uppercase tracking-wide font-semibold">Variations</div>
             </div>
         </div>
 
         <!-- Toolbar (Search & Filter) -->
-        <div class="glass-panel p-4 flex flex-col md:flex-row gap-4 justify-between items-center sticky top-4 z-20 shadow-2xl shadow-black/50">
+        <div class="glass-panel p-4 flex flex-col md:flex-row gap-4 justify-between items-center sticky top-4 z-20">
             <!-- Search -->
             <div class="relative w-full md:w-96">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -199,7 +233,7 @@
             </div>
 
             <!-- Filters -->
-            <div class="flex flex-wrap justify-center gap-1 bg-black/20 p-1 rounded-lg">
+            <div class="flex flex-wrap justify-center gap-2">
                 <button class="filter-btn active" onclick="filterByType('all')">All</button>
                 <button class="filter-btn" onclick="filterByType('generated')">Generated</button>
                 <button class="filter-btn" onclick="filterByType('upscaled')">Upscaled</button>
@@ -211,7 +245,7 @@
         <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 pb-12">
             <!-- Loading State -->
             <div class="col-span-full flex flex-col items-center justify-center py-20 text-gray-500">
-                <div class="w-10 h-10 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin mb-4"></div>
+                <div class="w-10 h-10 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin mb-4"></div>
                 <p>Loading your library...</p>
             </div>
         </div>
@@ -253,9 +287,7 @@
 
     <script>
         // Updated API Config
-        const host = window.location.hostname;
-        const port = window.location.port || (window.location.protocol === 'https:' ? '443' : '80');
-        const API_URL = `http://${host}:${port}/api`;
+        const API_URL = `${location.origin}/api`;
 
         let allImages = [];
         let currentFilter = 'all';
@@ -333,13 +365,12 @@
                 card.className = 'image-card group';
                 
                 const type = getImageType(filename);
-                // Badge color based on type
                 let badgeClass = 'bg-gray-500';
                 let typeLabel = 'UNK';
                 
-                if (type === 'generated') { badgeClass = 'bg-cyan-500'; typeLabel = 'GEN'; }
-                if (type === 'upscaled') { badgeClass = 'bg-teal-500'; typeLabel = 'UP'; }
-                if (type === 'variation') { badgeClass = 'bg-purple-500'; typeLabel = 'VAR'; }
+                if (type === 'generated') { badgeClass = 'bg-purple-500'; typeLabel = 'GEN'; }
+                if (type === 'upscaled') { badgeClass = 'bg-indigo-500'; typeLabel = 'UP'; }
+                if (type === 'variation') { badgeClass = 'bg-pink-500'; typeLabel = 'VAR'; }
                 
                 card.innerHTML = `
                     <img src="${API_URL}/output-image/${filename}" 
@@ -371,8 +402,6 @@
             const type = getImageType(filename);
             const typeLabel = type.charAt(0).toUpperCase() + type.slice(1);
             
-            // Extract some fake details if we can't parse filename metadata yet
-            // Assuming filenames might be like: gen_123456_seed777.png
             let seed = "Unknown";
             const seedMatch = filename.match(/seed(\d+)/);
             if(seedMatch) seed = seedMatch[1];
@@ -381,7 +410,7 @@
                 <div class="space-y-4">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <span class="text-gray-400 text-sm">Type</span>
-                        <span class="text-cyan-400 font-bold text-sm uppercase px-2 py-0.5 rounded bg-cyan-900/30 border border-cyan-500/30">${typeLabel}</span>
+                        <span class="text-purple-400 font-bold text-sm uppercase px-2 py-0.5 rounded bg-purple-900/30 border border-purple-500/30">${typeLabel}</span>
                     </div>
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <span class="text-gray-400 text-sm">Seed</span>
@@ -393,34 +422,25 @@
                     </div>
                 </div>
             `;
+            
             document.getElementById('modal').classList.add('active');
         }
 
         function closeModal() {
             document.getElementById('modal').classList.remove('active');
-            currentImage = null;
         }
 
         function downloadImage() {
-            if (!currentImage) return;
-            const link = document.createElement('a');
-            link.href = API_URL + `/output-image/${currentImage.filename}`;
-            link.download = currentImage.filename;
-            link.click();
+            if (currentImage) {
+                const link = document.createElement('a');
+                link.href = API_URL + `/output-image/${currentImage.filename}`;
+                link.download = currentImage.filename;
+                link.click();
+            }
         }
 
-        // Event Listeners
         document.getElementById('searchInput').addEventListener('input', renderGallery);
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-        
-        document.getElementById('modal').addEventListener('click', (e) => {
-            if (e.target.id === 'modal') closeModal();
-        });
 
-        // Initialize
         loadGallery();
     </script>
 </body>

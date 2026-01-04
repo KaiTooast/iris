@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 
-# Load environment variables
 env_path = BASE_DIR / '.env'
 if env_path.exists():
     load_dotenv(dotenv_path=env_path)
@@ -42,6 +41,10 @@ class Config:
     # Model settings
     DEFAULT_MODEL = os.getenv("DEFAULT_MODEL", "anime")
     
+    # Upscaler configuration
+    DEFAULT_UPSCALER = os.getenv("DEFAULT_UPSCALER", "realesrgan")  # Options: swinir, realesrgan, lanczos
+    ENABLE_SWINIR = os.getenv("ENABLE_SWINIR", "true").lower() == "true"
+    
     # DRAM Extension
     DRAM_EXTENSION_ENABLED = os.getenv("DRAM_EXTENSION_ENABLED", "false").lower() == "true"
     VRAM_THRESHOLD_GB = float(os.getenv("VRAM_THRESHOLD_GB", "6"))
@@ -52,22 +55,30 @@ class Config:
         """Read configuration from a file in static/config folder"""
         filepath = cls.CONFIG_DIR / filename
         try:
-            with open(filepath, 'r') as f:
+            with open(filepath, 'r', encoding='utf-8') as f:
                 content = f.read().strip()
                 if not content:
                     return None
                 return content
         except FileNotFoundError:
             return None
+        except Exception as e:
+            print(f"Warning: Error reading config file {filename}: {e}")
+            return None
     
     @classmethod
     def ensure_directories(cls):
         """Ensure all required directories exist"""
-        cls.STATIC_DIR.mkdir(exist_ok=True)
-        cls.OUTPUTS_DIR.mkdir(exist_ok=True)
-        cls.LOGS_DIR.mkdir(exist_ok=True)
-        cls.CONFIG_DIR.mkdir(parents=True, exist_ok=True)
-        cls.DATA_DIR.mkdir(parents=True, exist_ok=True)
+        try:
+            cls.STATIC_DIR.mkdir(exist_ok=True)
+            cls.OUTPUTS_DIR.mkdir(exist_ok=True)
+            cls.LOGS_DIR.mkdir(exist_ok=True)
+            cls.CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+            cls.DATA_DIR.mkdir(parents=True, exist_ok=True)
+        except Exception as e:
+            print(f"Warning: Error creating directories: {e}")
 
-# Ensure directories on import
-Config.ensure_directories()
+try:
+    Config.ensure_directories()
+except Exception as e:
+    print(f"Warning: Failed to ensure directories: {e}")

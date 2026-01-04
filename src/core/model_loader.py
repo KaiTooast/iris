@@ -14,6 +14,7 @@ class ModelLoader:
         self.pipe = None
         self.img2img_pipe = None
         self.upscaler = None
+        self.swinir_model = None
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.dtype = torch.float16 if torch.cuda.is_available() else torch.float32
         
@@ -103,11 +104,60 @@ class ModelLoader:
             logger.error(f"Failed to load Real-ESRGAN: {e}")
             self.upscaler = None
             return False
+    
+    async def load_swinir(self):
+        """Load SwinIR upscaler for superior quality"""
+        try:
+            import timm
+            from timm.models import swin_transformer
+            
+            logger.info("Loading SwinIR model...")
+            
+            # Load pretrained SwinIR model from HuggingFace
+            model_url = "https://huggingface.co/lixiaoqiang/SwinIR/resolve/main/003_realSR_BSRGAN_DFOWMFC_s64w8_SwinIR-L_x4_GAN.pth"
+            
+            # Import SwinIR architecture
+            from .swinir_arch import SwinIR
+            
+            # Initialize model
+            self.swinir_model = SwinIR(
+                upscale=4,
+                in_chans=3,
+                img_size=64,
+                window_size=8,
+                img_range=1.0,
+                depths=[6, 6, 6, 6, 6, 6],
+                embed_dim=180,
+                num_heads=[6, 6, 6, 6, 6, 6],
+                mlp_ratio=2,
+                upsampler='nearest+conv',
+                resi_connection='1conv'
+            )
+            
+            # Load weights
+            pretrained_model = torch.hub.load_state_dict_from_url(
+                model_url,
+                map_location=self.device,
+                progress=True
+            )
+            
+            self.swinir_model.load_state_dict(pretrained_model['params'], strict=True)
+            self.swinir_model = self.swinir_model.to(self.device).eval()
+            
+            logger.info("SwinIR loaded successfully")
+            return True
+            
+        except Exception as e:
+            logger.warning(f"SwinIR not available: {e}")
+            logger.info("SwinIR requires additional dependencies. Real-ESRGAN will be used as fallback.")
+            self.swinir_model = None
+            return False
             
     def get_pipelines(self):
         """Get loaded pipelines"""
         return {
             "text2img": self.pipe,
             "img2img": self.img2img_pipe,
-            "upscaler": self.upscaler
+            "upscaler": self.upscaler,
+            "swinir": self.swinir_model
         }

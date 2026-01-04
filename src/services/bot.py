@@ -349,8 +349,8 @@ async def cleanup_channels(ctx):
                 continue
             
             async for message in channel.history(limit=None):
-                # Only check bot's own messages with attachments
-                if not message.attachments or message.author.id != bot.user.id:
+                # Only check messages with attachments
+                if not message.attachments:
                     continue
                 
                 # Check if message link is in img_send.json

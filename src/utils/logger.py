@@ -140,9 +140,9 @@ class AIGeneratorLogger:
             temp_status = "[HOT]" if temp > 80 else "[WARM]" if temp > 70 else "[COOL]"
             self.logger.info(f"   Temperature: {temp}C {temp_status}")
     
-    def upscale_start(self, filename: str, scale: int):
+    def upscale_start(self, filename: str, scale: int, method: str = "lanczos"):
         """Log upscale operation start"""
-        self.logger.info(f"Upscaling: {filename} ({scale}x)")
+        self.logger.info(f"Upscaling: {filename} ({scale}x) using {method}")
     
     def upscale_complete(self, new_filename: str, new_size: tuple):
         """Log upscale completion"""

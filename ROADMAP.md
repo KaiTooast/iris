@@ -1,86 +1,54 @@
-# Roadmap – I.R.I.S.
+# I.R.I.S. Roadmap
 
-This roadmap reflects the long-term direction of the project.
-Dates are flexible — quality and stability come first.
-
----
-
-## Phase 1 – Foundation (✔ Current)
-- FastAPI backend
-- Web UI (Generate / Gallery / Settings)
-- WebSocket live generation
-- Multiple Stable Diffusion models
-- NSFW prompt filtering
-- CPU & CUDA support
-- Low-VRAM optimizations
-- Fully local execution
+This roadmap reflects intent, not promises.
 
 ---
 
-## Phase 2 – Stability & UX
+## ✅ Phase 1 – Foundation (Completed)
+
+- Local image generation backend
+- Web UI with live progress
+- Multiple built-in models
+- NSFW filtering
+- Gallery & asset system
+
+---
+
+## 🔄 Phase 2 – Stability & Polish
+
 - Improved error handling
-- Generation queue system
-- Better progress & ETA accuracy
-- UI language support (EN default)
-- Configurable presets (Quality / Speed)
-- Session persistence
+- Better WebSocket resilience
+- Unified settings system
+- English-only UI consistency
+- Improved documentation
 
 ---
 
-## Phase 3 – Hardware Expansion
-- AMD ROCm / HIP testing
-- Intel Arc (XPU) experiments
-- Apple Metal backend support
-- Unified device abstraction layer
-- Automatic backend selection
+## 🧠 Phase 3 – Hardware Expansion
+
+- AMD ROCm testing
+- Intel ARC / OneAPI support
+- macOS Metal experimentation
+- Modular upscaler interface (FSR / XeSS)
 
 ---
 
-## Phase 4 – Image Pipeline
-- Advanced upscaling pipeline
-- Open upscalers (FSR-based, ESRGAN)
-- Tiled rendering for low VRAM
-- Batch generation & variations
-- Prompt history & metadata
+## 🌍 Phase 4 – Scaling & Services
 
----
-
-## Phase 5 – Distribution Layer
-- Docker images
+- Multi-user support (optional)
+- Token / quota system (optional)
 - Headless API mode
-- Auth & token support (optional)
-- Rate limiting
-- Multi-user support
-- Model hot-swapping
+- External UI integrations
 
 ---
 
-## Phase 6 – Ecosystem
+## 🔮 Phase 5 – Community Ecosystem
+
 - Plugin system
-- Community UI themes
-- Model packs
-- Preset sharing
-- Documentation hub
-- Example deployments
+- Community model packs
+- Custom UI themes
+- Reference deployment examples
 
 ---
 
-## Long-Term Ideas
-- Workflow graphs (Comfy-style)
-- Video generation support
-- 3D / depth maps
-- Custom schedulers
-- Training & fine-tuning tools
-
----
-
-## Non-Goals
-- Closed cloud dependency
-- Proprietary lock-ins
-- Forced subscriptions
-- DRM or watermarking
-
----
-
-> I.R.I.S. grows with its community.
-> Fork it. Modify it. Run it your way.
+This roadmap will evolve with contributors.
