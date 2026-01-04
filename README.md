@@ -101,16 +101,72 @@ python src/start.py all
 ## 🧩 Project Structure
 
 ```
-src/
-├── api/            # FastAPI + WebSocket backend
-├── core/           # Model loading & generation logic
-├── services/       # Discord, upscaling, extensions
-├── utils/          # Logging, file handling
-├── frontend/       # HTML UI (Generate, Gallery, Settings)
-└── start.py        # Unified entry point
+scrips/
+├── .env                    # Runtime configuration
+├── README.md               # Project overview
+├── LICENSE                 # Project license
+├── CONTRIBUTING.md         # Contribution guidelines
+├── CODE_OF_CONDUCT.md      # Community rules
+├── ROADMAP.md              # Planned features & milestones
+├── VISION.md               # Long-term vision
+├── requirements.txt        # Python dependencies
+│
+├── src/                    # Backend & core logic
+│   ├── api/                # FastAPI routes & WebSockets
+│   │   ├── server.py
+│   │   ├── routes.py
+│   │   └── websockets.py
+│   ├── core/               # Model loading & generation
+│   │   ├── config.py
+│   │   ├── model_loader.py
+│   │   ├── generator.py
+│   │   └── swinir_arch.py  # Image processing / upscaling
+│   ├── services/           # Optional services
+│   │   ├── upscaler.py
+│   │   └── bot.py          # Discord integration
+│   ├── utils/              # Utilities
+│   │   ├── logger.py
+│   │   └── file_manager.py
+│   └── start.py            # Unified entry point
+│
+├── frontend/               # Web UI
+│   ├── index.html
+│   ├── generate.html
+│   ├── gallery.html
+│   └── settings.html
+│
+├── static/                 # Static assets & runtime data
+│   ├── css/
+│   ├── js/
+│   ├── config/
+│   └── data/
+│
+├── assets/                 # UI assets & model thumbnails
+│   ├── fav.ico
+│   └── thumbnails/
+│
+├── docs/                   # Documentation website
+│   ├── index.html
+│   ├── SETUP.md
+│   ├── ARTIFACTS.md
+│   ├── screenshots/
+│   └── assets/
+│
+├── outputs/                # Generated images
+├── examples/               # Example images
+└── Logs/                   # Runtime logs
 ```
 
-Static data, outputs, and logs are **explicitly separated** to encourage modification.
+> ⚠️ **Note**
+>
+> This project structure was taken **directly from the active development and testing environment**.
+> It reflects the real layout used during day-to-day coding, experimentation and debugging.
+>
+> Some folders (e.g. logs, outputs, cached data) are intentionally kept in the repository
+> to show how the system behaves in practice and how components interact at runtime.
+> 
+> The structure is intentionally not over-simplified.
+> It represents a real-world, evolving codebase rather than a polished showcase.
 
 ---
 
