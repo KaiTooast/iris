@@ -70,7 +70,7 @@ CUDA 11.8+ optional (CPU mode supported)
 ### Installation
 ```bash
 git clone https://github.com/KaiTooast/iris.git
-cd iris-engine
+cd iris
 
 python -m venv venv
 # Windows
